@@ -82,17 +82,18 @@ for yellow).
 .Sh EXAMPLES
 Here are some examples of useful uses of hexd's features.
 .Bl -tag -width Ds
-.It Em hexd -r0x1000+0x200 foo.bin
-Display the 512-byte range in 'foo.bin' starting at offset 0x1000.  Useful
-when files contain other embedded files/formats at a certain location (e.g.
-archive files).
-.It Em hexd -r-0x10 *.bin
-Show the first 16 bytes of each of the *.bin files, with a heading above each
-file (if more than one).  This is useful for example to compare headers of
-several samples of an unknown format.
-.It Em curl -s http://example.com | hexd | less -R
+.It Em pixd -r0x1000+0x200 foo.bin
+Display the 512-byte range in 'foo.bin' starting at offset 0x1000.
+Useful when files contain other embedded files/formats at a certain location
+(e.g. archive files).
+.It Em pixd -r-0x400 *.bin
+Show the first 1024 bytes of each of the *.bin files, with a heading above
+each file (if more than one).
+This is useful for example to compare headers of several samples of an unknown
+format.
+.It Em curl -s http://example.com | pixd | less -R
 .Nm
-works as a filter, too.  For paging long hexdumps,
+works as a filter, too.  For paging,
 .Xr less 1 Ns 's
 .Fl R
 flag is useful.
