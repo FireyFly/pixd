@@ -2,7 +2,7 @@
 in a lot of ways akin to a hexdump tool, except using coloured squares to
 represent each octet.
 
-pixd uses 24-bit color SGR escape sequences.  For a list of terminal
+*pixd* uses 24-bit color SGR escape sequences.  For a list of terminal
 emulators with support for these, see [XVilka's list of supporting terminal
 emulators][1].
 
@@ -11,5 +11,10 @@ emulators][1].
 
 ## License
 MIT license.  Enjoy!
+
+## See also
+* [hexd](http://github.com/FireyFly/hexd):
+  more conventional hexdump tool with colourful output, and also what *pixd*'s
+  code is based on.
 
 [1]: https://gist.github.com/XVilka/8346728
