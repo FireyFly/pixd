@@ -8,6 +8,7 @@ represent each octet.
 
 .. image:: https://github.com/moreati/python-pixd/raw/master/meta/examples.png
    :target: https://github.com/moreati/python-pixd/blob/master/meta/examples.png
+   :width: 664
    :alt: Screenshot
 
 *pixd* uses 24-bit color SGR escape sequences.  For a list of terminal
