@@ -130,7 +130,7 @@ def main():
             print('%s====> %s%s%s <===='
                   % ('\n' if i > 0 else '', '\x1B[1m', f.name, '\x1B[m'))
 
-        hexdump(f)
+        hexdump(f, start=args.range[0], end=args.range[1], columns=args.columns)
         f.close()
 
 
