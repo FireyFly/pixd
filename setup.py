@@ -5,7 +5,7 @@ with open('README.rst') as readme_file:
 
 setup(
     name='pixd',
-    version='0.0.2',
+    version='0.0.3',
     description='A tool for visualizing binary data using a colour palette',
     long_description=readme,
     author='Alex Willmer',
