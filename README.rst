@@ -6,9 +6,8 @@ A Python port of pixd_, a tool for visualizing binary data using a colour palett
 in a lot of ways akin to a hexdump tool, except using coloured squares to
 represent each octet.
 
-.. image:: https://github.com/moreati/python-pixd/raw/master/meta/examples.png
+.. image:: https://github.com/moreati/python-pixd/raw/master/meta/examples-33pct.png
    :target: https://github.com/moreati/python-pixd/blob/master/meta/examples.png
-   :width: 664
    :alt: Screenshot
 
 *pixd* uses 24-bit color SGR escape sequences.  For a list of terminal
