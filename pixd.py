@@ -85,7 +85,7 @@ def parse_range(s):
     """
     match = re.match(r'(\d*)([-+])(\d*)', s)
     if not match:
-        raise ValueError
+        raise ValueError("Not a valid range: '%s'" % s)
 
     first, delim, second = match.groups()
 
@@ -93,11 +93,15 @@ def parse_range(s):
         start = int(first) if first else 0
         end = int(second) if second else None
     else:
+        if not start:
+            raise ValueError("Start unspecified in range: '%s'" %s)
         start = int(first)
-        end = first + int(second)
+        if not end:
+            raise ValueError("End unspecified in range: '%s'" %s)
+        end = start + int(second)
 
-        raise ValueError("end was less than start")
     if end is not None and end < start:
+        raise ValueError("End %i was less than start %i" % (end, start))
 
     return (start, end)
 
