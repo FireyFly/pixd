@@ -126,9 +126,13 @@ def main():
         colormap[i] = color
 
     for i, f in enumerate(args.files):
+        # Blank line between files
+        if i > 0:
+            print()
+
+        # Label each file when there are multiple files
         if len(args.files) > 1:
-            print('%s====> %s%s%s <===='
-                  % ('\n' if i > 0 else '', '\x1B[1m', f.name, '\x1B[m'))
+            print('====> %s%s%s <====' % ('\x1B[1m', f.name, '\x1B[m'))
 
         hexdump(f, start=args.range[0], end=args.range[1], columns=args.columns)
         f.close()
