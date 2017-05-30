@@ -28,11 +28,19 @@ colormap = [
   0x4c0032, 0x560039, 0x640042, 0x75004e, 0x87005a, 0x9b0067, 0xb00075, 0xc60084, 0xdd0093, 0xf500a3, 0xff0faf, 0xff28b7, 0xff43c0, 0xff5ec9, 0xff79d2, 0xffffff,
 ]
 
+
 def expand(v):
+    """Split a 24 bit integer into 3 bytes
+
+    >>> expand(0xff2001)
+    (255, 32, 1)
+    """
     return ( ((v)>>16 & 0xFF), ((v)>>8 & 0xFF), ((v)>>0 & 0xFF) )
 
 
-def hexdump(f, start=0, end=-1, columns=64):
+def hexdump(f, start=0, end=None, columns=64):
+    """Print a colorful representation of binary data using terminal ESC codes
+    """
     # Seek to the start position; fail back to a consuming loop for-non
     # seekable file objects
     try:
@@ -82,6 +90,10 @@ def parse_range(s):
 
     >>> parse_range('0-')
     (0, None)
+    >>> pixd.parse_range('3-10')
+    (3, 10)
+    pixd.parse_range('3+10')
+    (3, 13)
     """
     match = re.match(r'(\d*)([-+])(\d*)', s)
     if not match:
