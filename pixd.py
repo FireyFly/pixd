@@ -38,6 +38,17 @@ def expand(v):
     return ( ((v)>>16 & 0xFF), ((v)>>8 & 0xFF), ((v)>>0 & 0xFF) )
 
 
+def format_offset(offset):
+    """Return a right-aligned hexadecimal representation of offset.
+
+    >>> format_offset(128)
+    '    0080'
+    >>> format_offset(3735928559)
+    'deadbeef'
+    """
+    return '%5x%03x' % (offset >> 12, offset & 0xFFF)
+
+
 def hexdump(f, start=0, end=None, columns=64):
     """Print a colorful representation of binary data using terminal ESC codes
     """
@@ -67,7 +78,7 @@ def hexdump(f, start=0, end=None, columns=64):
  
         for i in range(0, len(buf), columns*2):
             offset = start + read + i
-            print('%5x%03x ' % (offset >> 12, offset & 0xFFF), end='')
+            print(format_offset(offset), end=' ')
 
             for j in range(0, columns):
                 if i + j >= len(buf):
