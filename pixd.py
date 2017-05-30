@@ -45,10 +45,10 @@ def hexdump(f, start=0, end=-1, columns=64):
             if not buf:
                 break
 
-    count = end - start
+    count = (end or -1) - start
     read = 0
     while read != count:
-        if end == -1:
+        if end == None:
             to_read = io.DEFAULT_BUFFER_SIZE
         else:
             to_read = min(count - read, io.DEFAULT_BUFFER_SIZE)
@@ -81,6 +81,7 @@ def parse_range(s):
     """Return (start, end) parsed from "[start]-[end]" or "<start>+<size>".
 
     >>> parse_range('0-')
+    (0, None)
     """
     match = re.match(r'(\d*)([-+])(\d*)', s)
     if not match:
@@ -90,20 +91,20 @@ def parse_range(s):
 
     if delim == '-':
         start = int(first) if first else 0
-        end = int(second) if second else -1
+        end = int(second) if second else None
     else:
         start = int(first)
         end = first + int(second)
 
-    if end < start and end != -1:
         raise ValueError("end was less than start")
+    if end is not None and end < start:
 
     return (start, end)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-r', dest='range', default=(0, -1), type=parse_range)
+    parser.add_argument('-r', dest='range', default=(0, None), type=parse_range)
     parser.add_argument('-w', dest='columns', default=64, type=int)
     parser.add_argument('files', default=[sys.stdin], nargs='*', type=open)
     args = parser.parse_args()
