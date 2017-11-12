@@ -2,8 +2,8 @@
 #include <ctype.h>
 #include <err.h>
 #include <inttypes.h>
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -58,14 +58,11 @@ void hexdump(FILE *f, const char *filename) {
     size_t n = fread(buf, 1, to_read, f);
 
     for (size_t i = 0; i < n; i += option_columns*2) {
-      u8 *p = &buf[i];
-
       // Offset
       size_t offset = option_range.start + read + i;
       printf("%5zx%03zx ", offset >> 12, offset & 0xFFF);
 
       // Print two rows
-      const char *prev_fmt = NULL;
       for (size_t j = 0; j < option_columns; j++) {
         #define EXPAND(v) ((v)>>16 & 0xFF), ((v)>>8 & 0xFF), ((v)>>0 & 0xFF)
         if (i + j >= n) {
